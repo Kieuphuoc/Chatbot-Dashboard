@@ -1,6 +1,9 @@
 // ===== Main Application =====
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize theme
+    initTheme();
+
     // Initialize all tabs
     initTabs();
 
@@ -16,6 +19,47 @@ document.addEventListener('DOMContentLoaded', () => {
     // Render initial tab
     renderOverviewTab();
 });
+
+// ===== Theme Toggle =====
+function initTheme() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+
+    // Apply saved theme
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    updateChartColors(savedTheme);
+
+    // Toggle theme on click
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateChartColors(newTheme);
+
+        // Re-render current tab to update chart colors
+        const activeNav = document.querySelector('.nav-item.active');
+        if (activeNav) {
+            activeNav.click();
+        }
+
+        // Notify via chatbot
+        const themeLabel = newTheme === 'light' ? 'Sáng ☀️' : 'Tối 🌙';
+        addBotMessage(`Đã chuyển sang giao diện ${themeLabel}`);
+    });
+}
+
+// Update Chart.js colors based on theme
+function updateChartColors(theme) {
+    if (theme === 'light') {
+        Chart.defaults.color = '#475569';
+        Chart.defaults.borderColor = 'rgba(15, 23, 42, 0.1)';
+    } else {
+        Chart.defaults.color = '#94a3b8';
+        Chart.defaults.borderColor = 'rgba(148, 163, 184, 0.1)';
+    }
+}
 
 // Tab Navigation
 function initTabs() {
