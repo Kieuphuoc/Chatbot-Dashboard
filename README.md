@@ -2,7 +2,6 @@
 
 Bảng điều khiển phân tích tài chính doanh nghiệp hiện đại, được thiết kế cho các doanh nghiệp SME và vừa tại Việt Nam.
 
-![Dashboard Preview](./screenshots/dashboard_overview.png)
 
 ## 🚀 Tính năng chính
 
