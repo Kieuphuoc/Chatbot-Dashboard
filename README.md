@@ -149,17 +149,3 @@ Dashboard được thiết kế desktop-first nhưng responsive-ready:
 - **< 992px**: Collapsed sidebar
 
 ---
-
-## 📜 License
-
-MIT License - Free for personal and commercial use.
-
----
-
-## 👥 Credits
-
-Designed & Developed for Vietnamese SME ERP systems.
-
-**Version**: 1.0.0  
-**Last Updated**: January 2026
-"# Chatbot-Dashboard" 
