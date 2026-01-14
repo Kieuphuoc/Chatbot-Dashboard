@@ -32,11 +32,12 @@ function initTheme() {
     // Toggle theme on click
     themeToggle.addEventListener('click', () => {
         const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
 
         document.documentElement.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
         updateChartColors(newTheme);
+        updateLogo(newTheme); // ✅ và dòng này
 
         // Re-render current tab to update chart colors
         const activeNav = document.querySelector('.nav-item.active');
@@ -49,6 +50,16 @@ function initTheme() {
         addBotMessage(`Đã chuyển sang giao diện ${themeLabel}`);
     });
 }
+
+function updateLogo(theme) {
+    const logo = document.getElementById('app-logo');
+    if (!logo) return;
+
+    logo.src = theme === 'light'
+        ? '/logo.webp'
+        : '/white.webp';
+}
+
 
 // Update Chart.js colors based on theme
 function updateChartColors(theme) {
